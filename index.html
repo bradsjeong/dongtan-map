@@ -116,6 +116,14 @@ footer b{color:var(--ink);font-weight:600}
 .maplinks{display:flex;flex-wrap:wrap;gap:8px}
 .mlink{font-size:13px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid var(--line);color:var(--accent);text-decoration:none;background:var(--surface)}
 .mlink:hover{background:var(--accent-soft)}
+.verline{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted);margin-top:6px}
+.verline .ver{font-family:var(--font-mono);font-weight:600;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px}
+.history summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink);padding:4px 0}
+.history .hist{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:12px}
+.history .hv{display:flex;gap:10px;align-items:baseline}
+.history .hv b{font-family:var(--font-mono);color:var(--accent)}
+.history .hv span{font-size:12px;color:var(--muted);font-family:var(--font-mono)}
+.history ul{margin:4px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:2px;font-size:13px;color:var(--ink)}
 .mapwrap{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
 .map{width:100%;height:auto;display:block}
 .mdot{stroke:var(--surface);stroke-width:1.5;cursor:pointer;fill-opacity:.85}
@@ -175,6 +183,7 @@ footer b{color:var(--ink);font-weight:600}
     <div><b>데이터</b> 국토교통부 아파트 매매·전월세 실거래가(공공데이터포털). 동탄1신도시는 반송·능·석우동, 나머지 동탄구는 동탄2신도시로 묶었습니다. 영통권은 수원 영통동·망포동과 용인 서천동이고, 광교신도시(이의·하동)는 뺐습니다. 용인 기흥은 서천동을 뺀 기흥구, 용인 수지는 수지구에서 광교신도시 단지(이름에 ‘광교’가 들어간 상현동 단지)를 뺀 나머지입니다. 화성 분구(2026년 2월) 이전 동탄 거래는 화성시 코드에서 골라 합쳤습니다.</div>
     <div><b>계산 기준</b> 평당가는 같은 권역(동탄1·동탄2·영통권·기흥·수지) 중위값과 비교합니다. 매매가와 전세가는 위에서 고른 기간(최근 3개월 또는 6개월)의 중위값입니다. 해제된 거래와 1~3층 거래는 현재가에서 빼고, 전세가는 월세 없는 순수 전세만 씁니다. 전고점은 거래가 있었던 달 3개씩 묶은 중위값의 최고치라서 단발성 고가 거래의 영향을 덜 받습니다.</div>
     <div><b>한계</b> 실거래 신고는 계약 후 30일까지 들어오므로 최근 한두 달은 건수가 적습니다. 점수는 공식 지표가 아니라 화면 위 가중치로 만든 참고값이니, 투자 판단은 현장 확인과 함께 하세요.</div>
+    <div class="verline"><span class="ver">v0.1</span><span>coded by SM Jeong</span></div><details class="history" id="history"><summary>업데이트 기록</summary><ol class="hist"><li><div class="hv"><b>v0.1</b><span>2026-10-31</span></div><ul><li>국토교통부 실거래가(매매·전월세) 기반 전용 84㎡ 저평가 스크리너 첫 버전</li><li>권역: 동탄1신도시, 동탄2신도시, 영통권(영통·망포·서천), 용인 기흥, 용인 수지 (광교신도시 제외)</li><li>저평가 점수: 전고점 대비 하락폭, 권역 평균 대비 평당가, 전세가율, 신축도 가중합 (가중치 조절 가능)</li><li>매매가·전세가 기준 기간 선택: 최근 3개월 / 6개월 중위값</li><li>필터: 역 1km 이내, 전세가율 50%+, 10억 미만, 2018년 이후 준공, 최근 거래 건수</li><li>단지 지도(오픈스트리트맵 배경), 카카오맵 버전 별도 페이지, 단지별 카카오맵·네이버지도 바로가기</li><li>단지 상세: 월별 거래가 추이, 최근 실거래 10건, 점수 구성</li></ul></li></ol></details>
   </footer>
 </div>
 
