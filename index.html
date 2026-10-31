@@ -124,6 +124,10 @@ footer b{color:var(--ink);font-weight:600}
 .history .hv b{font-family:var(--font-mono);color:var(--accent)}
 .history .hv span{font-size:12px;color:var(--muted);font-family:var(--font-mono)}
 .history ul{margin:4px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:2px;font-size:13px;color:var(--ink)}
+.meta .rent{color:var(--mid);background:var(--mid-soft);font-weight:600;padding:0 6px;border-radius:4px}
+.rentnote{font-size:13px;background:var(--mid-soft);color:var(--ink);border-radius:8px;padding:8px 10px}
+.rentnote b{color:var(--mid);margin-right:4px}
+.mdot.rent{stroke:var(--ink);stroke-dasharray:2 2}
 .mapwrap{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
 .map{width:100%;height:auto;display:block}
 .mdot{stroke:var(--surface);stroke-width:1.5;cursor:pointer;fill-opacity:.85}
@@ -138,6 +142,7 @@ footer b{color:var(--ink);font-weight:600}
 .kerr{padding:24px;font-size:14px;color:var(--muted)}
 .kdot{border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:var(--font-mono);opacity:.92}
 .kdot.m-good{background:#11845b}.kdot.m-mid{background:#c88a00}.kdot.m-bad{background:#c03a3a}
+.kdot.rent{border-style:dashed;border-color:#17202e}
 .kdot.sel{border-color:#17202e;border-width:3px;opacity:1}
 .klabel{background:#17202e;color:#fff;font-size:12px;font-weight:700;padding:4px 8px;border-radius:6px;white-space:nowrap}
 </style>
@@ -182,8 +187,9 @@ footer b{color:var(--ink);font-weight:600}
   <footer>
     <div><b>데이터</b> 국토교통부 아파트 매매·전월세 실거래가(공공데이터포털). 동탄1신도시는 반송·능·석우동, 나머지 동탄구는 동탄2신도시로 묶었습니다. 영통권은 수원 영통동·망포동과 용인 서천동이고, 광교신도시(이의·하동)는 뺐습니다. 용인 기흥은 서천동을 뺀 기흥구, 용인 수지는 수지구에서 광교신도시 단지(이름에 ‘광교’가 들어간 상현동 단지)를 뺀 나머지입니다. 화성 분구(2026년 2월) 이전 동탄 거래는 화성시 코드에서 골라 합쳤습니다.</div>
     <div><b>계산 기준</b> 평당가는 같은 권역(동탄1·동탄2·영통권·기흥·수지) 중위값과 비교합니다. 매매가와 전세가는 위에서 고른 기간(최근 3개월 또는 6개월)의 중위값입니다. 해제된 거래와 1~3층 거래는 현재가에서 빼고, 전세가는 월세 없는 순수 전세만 씁니다. 전고점은 거래가 있었던 달 3개씩 묶은 중위값의 최고치라서 단발성 고가 거래의 영향을 덜 받습니다.</div>
+    <div><b>임대 출신 표시</b> 공공임대·민간임대로 공급된 뒤 분양전환된 단지는 ‘임대 출신’, 준공 4년 이상 지나서야 84㎡ 첫 매매가 나온 단지는 ‘임대 추정’으로 표시합니다. 추정은 데이터로 짐작한 것이라 틀릴 수 있습니다.</div>
     <div><b>한계</b> 실거래 신고는 계약 후 30일까지 들어오므로 최근 한두 달은 건수가 적습니다. 점수는 공식 지표가 아니라 화면 위 가중치로 만든 참고값이니, 투자 판단은 현장 확인과 함께 하세요.</div>
-    <div class="verline"><span class="ver">v0.1</span><span>coded by SM Jeong</span></div><details class="history" id="history"><summary>업데이트 기록</summary><ol class="hist"><li><div class="hv"><b>v0.1</b><span>2026-10-31</span></div><ul><li>국토교통부 실거래가(매매·전월세) 기반 전용 84㎡ 저평가 스크리너 첫 버전</li><li>권역: 동탄1신도시, 동탄2신도시, 영통권(영통·망포·서천), 용인 기흥, 용인 수지 (광교신도시 제외)</li><li>저평가 점수: 전고점 대비 하락폭, 권역 평균 대비 평당가, 전세가율, 신축도 가중합 (가중치 조절 가능)</li><li>매매가·전세가 기준 기간 선택: 최근 3개월 / 6개월 중위값</li><li>필터: 역 1km 이내, 전세가율 50%+, 10억 미만, 2018년 이후 준공, 최근 거래 건수</li><li>단지 지도(오픈스트리트맵 배경), 카카오맵 버전 별도 페이지, 단지별 카카오맵·네이버지도 바로가기</li><li>단지 상세: 월별 거래가 추이, 최근 실거래 10건, 점수 구성</li></ul></li></ol></details>
+    <div class="verline"><span class="ver">v0.2</span><span>coded by SM Jeong</span></div><details class="history" id="history"><summary>업데이트 기록</summary><ol class="hist"><li><div class="hv"><b>v0.2</b><span>2026-10-31</span></div><ul><li>임대 출신 단지 표시: 공공임대·민간임대로 공급 후 분양전환된 단지에 ‘임대 출신’, 데이터로 추정되는 단지에 ‘임대 추정’ 배지</li><li>‘임대 출신 제외’ 필터 추가, 지도에서는 점선 테두리로 구분</li><li>단지 상세에 임대 출신 사유와 시세 해석 주의 문구 표시</li></ul></li><li><div class="hv"><b>v0.1</b><span>2026-10-31</span></div><ul><li>국토교통부 실거래가(매매·전월세) 기반 전용 84㎡ 저평가 스크리너 첫 버전</li><li>권역: 동탄1신도시, 동탄2신도시, 영통권(영통·망포·서천), 용인 기흥, 용인 수지 (광교신도시 제외)</li><li>저평가 점수: 전고점 대비 하락폭, 권역 평균 대비 평당가, 전세가율, 신축도 가중합 (가중치 조절 가능)</li><li>매매가·전세가 기준 기간 선택: 최근 3개월 / 6개월 중위값</li><li>필터: 역 1km 이내, 전세가율 50%+, 10억 미만, 2018년 이후 준공, 최근 거래 건수</li><li>단지 지도(오픈스트리트맵 배경), 카카오맵 버전 별도 페이지, 단지별 카카오맵·네이버지도 바로가기</li><li>단지 상세: 월별 거래가 추이, 최근 실거래 10건, 점수 구성</li></ul></li></ol></details>
   </footer>
 </div>
 
@@ -216,6 +222,21 @@ const DATA=RAW.cx.map((c,i)=>{
     peak,peakYm,lat:c.y,lng:c.x,
     grp:c.r==="영통권"?"영통권":(c.u||(DT1.has(c.d)?"동탄1":"동탄2"))};
 });
+// ---------- 임대 출신 단지 표시 ----------
+// 확인된 단지: 공급 당시 기사·단지 정보로 확인
+const RENTAL_KNOWN={
+  "엔에이치에프엘크루":"10년 공공임대로 공급, 2029년 분양전환 예정",
+  "산척동,동탄호수공원금강펜테리움센트럴파크Ⅱ":"확정분양가 민간임대(분양전환형)로 공급",
+};
+const RENTAL_NAME=/엔에이치에프|NHF|임대|뉴스테이|엘에이치\d+단지|LH\d+단지/i;
+DATA.forEach(d=>{
+  const first=d.keys[0]||"";
+  const gap=first?(+first.slice(0,4))-d.built:0;
+  if(RENTAL_KNOWN[d.name]) d.rent={k:"임대 출신",why:RENTAL_KNOWN[d.name]};
+  else if(RENTAL_NAME.test(d.name)) d.rent={k:"임대 출신",why:"단지명에 공공임대·임대리츠(NHF·LH 임대단지) 표시"};
+  else if(d.built>=2012&&first>"202006"&&gap>=4) d.rent={k:"임대 추정",why:`준공(${d.built}년) ${gap}년 뒤인 ${ymLabel(first)}에야 84㎡ 첫 매매. 임대 후 분양전환 단지일 가능성`};
+});
+
 // ---------- 가까운 역 (오픈스트리트맵 역 위치) ----------
 const STATIONS=(()=>{const seen=new Set(),out=[];(BASE.stn||[]).forEach(s=>{let n=s.n.replace(/\(.*\)/,"").trim();if(!n.endsWith("역"))n+="역";if(seen.has(n))return;seen.add(n);out.push({n,lng:s.p[0],lat:s.p[1]})});return out})();
 const distM=(a,b,c,d)=>{const k=Math.cos(37.25*Math.PI/180);return Math.hypot((a-c)*111320,(b-d)*111320*k)};
@@ -302,7 +323,7 @@ function renderMap(rows){
   const R=d=>(3+Math.sqrt(d.price/10000)*1.2)*zf;
   const dots=pts.filter(d=>inList.has(d.id)).sort((a,b)=>b.price-a.price).map(d=>{
     const sc=inList.get(d.id),cls=grade(sc)[1].replace("p-","");
-    return `<circle class="mdot m-${cls}${open===d.id?" sel":""}" data-id="${d.id}" cx="${X(d.lng).toFixed(1)}" cy="${Y(d.lat).toFixed(1)}" r="${R(d).toFixed(1)}" tabindex="0"><title>${d.name} · ${eokS(d.price)} · 점수 ${sc.toFixed(0)}</title></circle>`}).join("");
+    return `<circle class="mdot m-${cls}${d.rent?" rent":""}${open===d.id?" sel":""}" data-id="${d.id}" cx="${X(d.lng).toFixed(1)}" cy="${Y(d.lat).toFixed(1)}" r="${R(d).toFixed(1)}" tabindex="0"><title>${d.name} · ${eokS(d.price)} · 점수 ${sc.toFixed(0)}</title></circle>`}).join("");
   const faded=pts.filter(d=>!inList.has(d.id)).map(d=>`<circle cx="${X(d.lng).toFixed(1)}" cy="${Y(d.lat).toFixed(1)}" r="3" fill="var(--line)"/>`).join("");
   const inBox=l=>l.lat>a0&&l.lat<a1&&l.lng>o0&&l.lng<o1;
   const stIn=STATIONS.filter(inBox), showLbl=stIn.length<=14;
@@ -375,6 +396,7 @@ const FILTERS=[
   {key:"jr",label:"전세가율 50%+",fn:d=>d.ratio>=0.5},
   {key:"under10",label:"10억 미만",fn:d=>d.price<100000},
   {key:"new",label:"2018년 이후 준공",fn:d=>d.built>=2018},
+  {key:"norent",label:"임대 출신 제외",fn:d=>!d.rent},
 ];
 let filter="all", open=null, minCnt=MIN_CNT[PERIOD], shownN=30, rowsAll=[];
 function renderChips(){
@@ -393,7 +415,7 @@ function renderList(){
     return `<div class="item"><button class="row" data-id="${d.id}" aria-expanded="${open===d.id}">
       <span class="rank">${String(i+1).padStart(2,"0")}</span>
       <span style="min-width:0"><div class="name">${d.name}</div>
-        <div class="meta"><span class="grp">${d.grp}</span><span>${d.dong}</span>${d.stn?`<span>${d.stn.n} ${d.stn.m<1000?Math.round(d.stn.m/10)*10+"m":(d.stn.m/1000).toFixed(1)+"km"}</span>`:""}<span>${d.built}년</span><span class="num">${eokS(d.price)}</span><span class="num">전고점 ${eokS(d.peak)}</span><span class="num">전세가율 ${d.ratio==null?"–":(d.ratio*100).toFixed(0)+"%"}</span><span>${PERIOD}개월 거래 ${d.cnt}건</span></div></span>
+        <div class="meta"><span class="grp">${d.grp}</span>${d.rent?`<span class="rent" title="${d.rent.why}">${d.rent.k}</span>`:""}<span>${d.dong}</span>${d.stn?`<span>${d.stn.n} ${d.stn.m<1000?Math.round(d.stn.m/10)*10+"m":(d.stn.m/1000).toFixed(1)+"km"}</span>`:""}<span>${d.built}년</span><span class="num">${eokS(d.price)}</span><span class="num">전고점 ${eokS(d.peak)}</span><span class="num">전세가율 ${d.ratio==null?"–":(d.ratio*100).toFixed(0)+"%"}</span><span>${PERIOD}개월 거래 ${d.cnt}건</span></div></span>
       <span class="score"><span class="s">${s.toFixed(0)}</span><span class="bar"><i style="width:${s}%"></i></span><span class="pill ${cls}">${g}</span></span>
     </button>${open===d.id?detail(d):""}</div>`}).join("")+
     (all.length>shownN?`<div class="item"><button class="row more" id="more" style="grid-template-columns:1fr;text-align:center;color:var(--accent)">${all.length-shownN}개 더 보기</button></div>`:"");
@@ -406,8 +428,9 @@ function detail(d){
   const tw=FACTORS.reduce((a,f)=>a+W[f.key],0)||1;
   const q=encodeURIComponent(d.name), cityQ=encodeURIComponent(`${d.dong} ${d.name}`);
   const links=`<div class="maplinks">${d.lat?`<a class="mlink" href="https://map.kakao.com/link/map/${q},${d.lat},${d.lng}" target="_blank" rel="noopener">카카오맵에서 보기</a>`:""}<a class="mlink" href="https://map.naver.com/p/search/${cityQ}" target="_blank" rel="noopener">네이버지도에서 보기</a></div>`;
+  const rentNote=d.rent?`<div class="rentnote"><b>${d.rent.k}</b> ${d.rent.why}. 임대 출신 단지는 분양전환 조건·권리관계 때문에 주변보다 낮게 거래되는 경우가 많아, 점수가 실제보다 좋게 나올 수 있습니다.</div>`:"";
   return `<div class="detail">
-    ${links}
+    ${links}${rentNote}
     <div class="kv">${kv.map(([k,v])=>`<div><div class="k">${k}</div><div class="v">${v}</div></div>`).join("")}</div>
     <div class="note">참고: 최근 ${ol}개월 중위 매매가 ${o.p!=null?eok(o.p):"거래 없음"} (${o.c}건) · 전세가 ${o.j?eok(o.j):"자료 없음"}</div>
     <div class="factors">${FACTORS.map(f=>`<div class="f"><div class="k">${f.label}</div><div class="v">${f.show(d)} · +${(f.f(d)*W[f.key]/tw*100).toFixed(0)}점</div></div>`).join("")}</div>
@@ -466,7 +489,7 @@ function renderMap(rows){
   pts.slice().sort((a,b)=>b.d.price-a.d.price).forEach(({d,s})=>{
     const cls=grade(s)[1].replace("p-",""), r=Math.round(7+Math.sqrt(d.price/10000)*2.2);
     const dot=document.createElement("div");
-    dot.className=`kdot m-${cls}${open===d.id?" sel":""}`;
+    dot.className=`kdot m-${cls}${d.rent?" rent":""}${open===d.id?" sel":""}`;
     dot.style.width=dot.style.height=(r*2)+"px";
     dot.title=`${d.name} · ${eokS(d.price)} · 점수 ${s.toFixed(0)}`;
     dot.textContent=s.toFixed(0);dot.style.fontSize=Math.max(9,r-2)+"px";
